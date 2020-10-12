@@ -10,6 +10,7 @@ public:
     QImage clear();
     void mouseReleaseEvent(QMouseEvent *ev);
     void mousePressEvent(QMouseEvent *ev);
+    void calcCircleCoord(int i, int j, int x1, int y1, QRgb value);
     void setType(char c);
     void drawTriangle();
     void drawLine();
