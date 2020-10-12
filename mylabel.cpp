@@ -71,33 +71,16 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *ev){
                 j = j -1;
             }
             ++i;
-            x=i+x1;
-            y=j+y1;
-            image.setPixel(x,y,value); // x,y changed to draw all other octants
-            x=-i+x1;
-            y=-j+y1;
-            image.setPixel(x,y,value);
-            x=-j+x1;
-            y=-i+y1;
-            image.setPixel(x,y,value);
-            x = j+x1;
-            y = i+y1;
-            image.setPixel(x,y,value);
-            x = -i+x1;
-            y = j+y1;
-            image.setPixel(x,y,value);
-            x = -j+x1;
-            y = i+y1;
-            image.setPixel(x,y,value);
-            x=i+x1;
-            y=-j+y1;
-            image.setPixel(x,y,value);
-            x=j+x1;
-            y=-i+y1;
-            image.setPixel(x,y,value);
 
+            calcCircleCoord(i,j,x1,y1,value); // x,y changed to draw all other octants
+            calcCircleCoord(-i,-j,x1,y1,value);
+            calcCircleCoord(-j,-i,x1,y1,value);
+            calcCircleCoord(j,i,x1,y1,value);
+            calcCircleCoord(-i,j,x1,y1,value);
+            calcCircleCoord(-j,i,x1,y1,value);
+            calcCircleCoord(i,j,x1,y1,value);
+            calcCircleCoord(j,-i,x1,y1,value);
             value = qRgb(0,0,255);
-
         }
         for(int i = 0; i<w; i++)
         {
@@ -135,6 +118,13 @@ void MyLabel::mouseReleaseEvent(QMouseEvent *ev){
     {
         drawLine();
     }
+}
+
+void MyLabel::calcCircleCoord(int i, int j, int x1, int y1, QRgb value){
+    int x,y;
+    x = i+x1;
+    y = j+y1;
+    image.setPixel(x,y,value);
 }
 
 QImage MyLabel::clear(){
